@@ -1,0 +1,13 @@
+.desk-brand{
+	display: none !important;
+	opacity: 0;
+}
+#bannerimg{
+	width:100% !important;
+}
+#breakline{
+	display: block !important;
+}
+.navbar-nav{
+	opacity: 0;
+}
