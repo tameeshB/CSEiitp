@@ -8,10 +8,13 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>CSE IIT Patna</title>
+	<meta name="theme-color" content="#0d47a1">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
-
+	<link rel="icon" 
+      type="image/ico" 
+      href="img/favicon.ico">
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/mobile.css" media="only screen and (max-width: 567px)">
@@ -61,6 +64,15 @@
         	box-shadow: 0 0 50px #0d47a1;
   			-webkit-filter: grayscale(50%); /* Safari 6.0 - 9.0 */
     		filter: grayscale(50%);
+        }
+        .address{
+        	padding:10px;
+        	box-shadow: 0 0 20px rgba(123, 123, 123, 0.64);
+        }
+        .boxlist li{
+        	padding:10px;
+        	border-bottom: 1px solid rgba(183, 183, 183, 0.8);
+        	width:100%;
         }
     </style>
 	<script>
@@ -136,7 +148,7 @@
     </header>
     <br>
 	<br><center>
-	<div id="pagehead" class="col-lg-10">
+	<div id="pagehead" class="col-lg-12">
 		<h1 class="h1-responsive">Department of Computer Science and Engineering<br><small class="text-muted">Indian Institute of Technology, Patna</small></h1>
 	
 	
@@ -159,25 +171,57 @@
                     <!--Post-->
                     <div class="post-wrapper">
                         <!--Post data-->
-                        <h1 class="h1-responsive">Post title <small class="text-muted">Secondary text</small></h1>
-                        <h5>Written by <a href="">Name</a>, 30.04.2016</h5>
+                        <h1 class="h1-responsive">Computer Science and Engineering<br><small class="text-muted">Intro</small></h1><!-- 
+                        <h5>Written by <a href="">Name</a>, 30.04.2016</h5> -->
 
-                        <br>
+                        <p>
+                        	A journey to the global academic summit that touches every aspect of national life in its wake is the primary goal of the department. The department came into existence in 2008 with miniscule faculty strength and minute undergraduate student body. This inadequacy was no deterrent to its bold decision to start the doctoral program right away.
+                        </p>
 
-                        <!--Featured image -->
-                        
-
-                        <br>
-
-                        <!--Post excerpt-->
-                        <p>Content</p>
+                        <p>
+                        	The department has not looked back since then. It has witnessed a manifold raise in the size of the vibrant student body. Presently, all efforts are geared towards making this the first choice of aspiring undergraduates. This is being groomed to be the favored destination for research scholars brimming with ideas. Faculty strength is all set to multiply many times over with the planned addition of young and dynamic persons flashing enviable academic and research records.
+                        </p>
+                        <p>
+                        	The department boasts of generously equipped teaching and research laboratories. Doctoral candidates are liberally supported either by scholarships or by sponsored fellowships. 
+                        </p>
+                        <p>
+                        	Sponsored research and developmental activities add muscle to the buzzing academics.
+                        </p>
+                        <p>
+                        	Future beckons this young department.
+                        </p>
 
                         <!--"Read more" button-->
-                        <button class="btn btn-primary">Read more</button>
+                        <!-- <button class="btn btn-primary">Read more</button> -->
                     </div>
                     <!--/.Post-->
+					<hr>
+                    <!--Post-->
+                    <div class="post-wrapper">
+                        <!--Post data-->
+                        <h1 class="h1-responsive"><small class="text-muted">Events &amp; News</small></h1>
+                        <ul class="boxlist">
+                        	<li>Event1</li>
+                        	<li>Talk2</li>
+                        	<li>Presentation3</li>
+                        	<li>Holiday</li>
+                        </ul>
 
-                    
+                        <button class="btn btn-primary">More</button>
+                    </div>
+                    <hr>
+                    <div class="post-wrapper">
+                        <!--Post data-->
+                        <h1 class="h1-responsive"><small class="text-muted">Awards &amp; Recognition</small></h1>
+						<ul class="boxlist">
+                        	<li>Award to 1</li>
+                        	<li>Award to 2</li>
+                        	<li>Award to 3</li>
+                        	<li>Award to 4</li>
+                        </ul>
+
+                        <button class="btn btn-primary">More</button>
+                    </div>
 
                     
 
@@ -237,7 +281,20 @@
                             </div>
                         </div>
                     </div>
-					
+
+					<div class="widget-wrapper">
+                        <!-- <h4>Updates</h4> -->
+                        <!-- <br> -->
+                        <!-- class="list-group-item active" -->
+                        <div class="list-group">
+                            <a href="#" class="list-group-item active">Updates</a>
+                            <a href="#" class="list-group-item">Talk1</a>
+                            <a href="#" class="list-group-item">Award1</a>
+                            <a href="#" class="list-group-item">Award2</a>
+                            <a href="#" class="list-group-item">Talk2</a>                           
+                        </div>
+                    </div>
+
 					<div class="widget-wrapper">
                         <h4>Quick Links:</h4>
                         <br>
@@ -245,9 +302,7 @@
                         <div class="list-group">
                             <a href="http://www.iitp.ac.in" class="list-group-item">IIT P Home</a>
                             <a href="http://ashoka.iitp.ac.in" class="list-group-item">Webmail</a>
-                            <!-- <a href="http://" class="list-group-item">Travels</a>
-                            <a href="#" class="list-group-item">Fashion</a>
-                            <a href="#" class="list-group-item">Parties</a> -->
+                            
                         </div>
                     </div>
 
@@ -267,17 +322,18 @@
             <div class="row">
 
                 <!--First column-->
-                <div class="col-md-3 offset-lg-1 hidden-lg-down">
+                <div class="col-md-3 offset-lg-1 address">
                     <h5 class="title">Department of Computer Science and Engineering</h5>
                     <p>Indian Institute of Technology Patna</p>
 
                     <p>Bihta - 801103, Patna, Bihar, India</p>
                 </div>
-
+				 <div class="col-lg-2 col-md-4">
+                                </div>
                 <hr class="hidden-md-up">
 
-                <div class="col-lg-2 col-md-4">
-                    <h5 class="title">Contact</h5>
+                <div class="col-lg-2 col-md-4 address">
+                    <h5 class="title ">Contact</h5>
                     <ul>
                         <li>Email: <a href="emailto:cse_off@iitp.ac.in">cse_off[AT]iitp.ac.in</a></li>
                         <li>Phone: +91 612 302 8337</li>
