@@ -1,0 +1,35 @@
+People Logs
+ --------------
+ [127.0.0.1] 
+ [30_December_2016_09_29_53_AM] 
+  lalaland 
+ --------------
+ [127.0.0.1] 
+ [30_December_2016_09_33_44_AM] 
+  Error: Unable to connect to MySQL.
+ 
+ --------------
+ [127.0.0.1] 
+ [30_December_2016_09_33_44_AM] 
+  Debugging errno: 1045
+ 
+ --------------
+ [127.0.0.1] 
+ [30_December_2016_09_33_44_AM] 
+  Debugging error: Access denied for user '1282397'@'localhost' (using password: YES)
+ 
+ --------------
+ [127.0.0.1] 
+ [30_December_2016_09_34_40_AM] 
+  Error: Unable to connect to MySQL.
+ 
+ --------------
+ [127.0.0.1] 
+ [30_December_2016_09_34_40_AM] 
+  Debugging errno: 1049
+ 
+ --------------
+ [127.0.0.1] 
+ [30_December_2016_09_34_40_AM] 
+  Debugging error: Unknown database 'cseiitp'
+ 

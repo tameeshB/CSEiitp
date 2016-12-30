@@ -5,6 +5,8 @@
         header("Location: $targeturi");
          exit;
     }
+    session_start();
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

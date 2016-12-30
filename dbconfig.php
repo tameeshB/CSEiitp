@@ -1,6 +1,10 @@
 <?PHP
+define("SERVER_ROOT","/var/www/html/cse/");
 define("SERVER_ADDRESS", "localhost");
-define("USER_NAME", "1282397");
-define("PASSWORD", "Pswd4hosting.");
-define("DATABASE", "1282397");
+define("USER_NAME", "root");
+define("PASSWORD", "toor");
+define("DATABASE", "cseiitp");
+define('MYSQL_BOTH',MYSQLI_BOTH);
+define('MYSQL_NUM',MYSQLI_NUM);
+define('MYSQL_ASSOC',MYSQLI_ASSOC);
 ?>

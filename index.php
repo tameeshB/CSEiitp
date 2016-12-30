@@ -40,6 +40,8 @@ if (preg_match($base . '$@', $url, $match)) {
 	require ('view/projects.php');
 } elseif (preg_match($base . 'contact-us?$@', $url, $match)) {
 	require ('view/contact.php');
+} elseif (preg_match($base . 'api/login?$@', $url, $match)) {
+	require ('api/login.php');
 } else {
 	http_response_code(404);
 	require ('404.php');
