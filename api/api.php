@@ -34,6 +34,10 @@ class peopleapi {
 	function __construct() {
 		
 	}
+
+	/**
+	*Filter string for SQL Injection attack possibility
+	*/
 	public function SQLInjFilter(&$unfilteredString){
 		// $unfilteredString;
 		$unfilteredString = mb_convert_encoding($unfilteredString, 'UTF-8', 'UTF-8');
@@ -42,32 +46,37 @@ class peopleapi {
 		
 	}
 
+
+	/**
+	*updates sessionActivity table with login info , ip and md5
+	*[working]
+	*/
 	public function updateSessionActivity(){
 		$sql = "SELECT `ip`,`ipalt` FROM `sessionActivity`  WHERE `uid`= '".$_SESSION['uid']."'";
 			// global $conn;
         	$result = mysqli_query(mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE), $sql);
-        	if(!$result || mysqli_num_rows($result)<1){
-            	$sqlInsert = "INSERT INTO `sessionActivity`(uid,idmd5,ip,	lastDateTime) VALUES ('".$_SESSION['uid']."', '".$_SESSION['id']."', '".$_SERVER['REMOTE_ADDR']."', NOW())";
-
-        	$result = mysqli_query(mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE),$sqlInsert);
-        	}else{
+        	if(!$result || mysqli_num_rows($result)<1){//not present
+            	$sqlt = "INSERT INTO `sessionActivity`(uid,idmd5,ip,lastDateTime) VALUES ('".$_SESSION['uid']."', '".$_SESSION['id']."', '".$_SERVER['REMOTE_ADDR']."', NOW())";
+        	}else{//present
         		while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
         			if (!isset($row['ipalt']) || $row['ipalt']==""){
-        				$sql = "UPDATE sessionActivity SET idmd5 = '".$_SESSION['id']."' , netlogin = netlogin + 1, ipalt = '".$_SERVER['REMOTE_ADDR']."' , lastDateTime = NOW() WHERE `uid` = '".$_SESSION['uid']."'";
+        				$sqlt = "UPDATE sessionActivity SET idmd5 = '".$_SESSION['id']."' , netlogin = netlogin + 1, nethit = nethit + 1, ipalt = '".$_SERVER['REMOTE_ADDR']."' , lastDateTime = NOW() WHERE `uid` = '".$_SESSION['uid']."'";
            			} else {
-           					$sql = "UPDATE sessionActivity SET idmd5 = '".$_SESSION['id']."' , netlogin = netlogin + 1, ip = '".$_SERVER['REMOTE_ADDR']."' , lastDateTime = NOW() WHERE `uid` = '".$_SESSION['uid']."'";
+           					$sqlt = "UPDATE sessionActivity SET idmd5 = '".$_SESSION['id']."' , netlogin = netlogin + 1, nethit = nethit + 1, ip = '".$_SERVER['REMOTE_ADDR']."' , lastDateTime = NOW() WHERE `uid` = '".$_SESSION['uid']."'";
         			}
-        	$result = mysqli_query(mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE),$sql);
-        	if($result){}
         		}
         	}
+        	$result = mysqli_query(mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE),$sqlt);
+        	if($result){}
+        	// echo $sqlt;
 	}
 
 	/*
 	*function updating last login for a specific md5 code
+	*[working]
 	*/
 	public function updateLastLogin($md5id){
-		$sql = "UPDATE sessionActivity SET netlogin = netlogin + 1, lastDateTime = NOW() WHERE idmd5 = '$md5id'";
+		$sql = "UPDATE sessionActivity SET  nethit = nethit + 1, lastDateTime = NOW() WHERE idmd5 = '$md5id'";
         $result = mysqli_query(mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE),$sql);
         if($result){}
 	}
@@ -75,6 +84,7 @@ class peopleapi {
 	/*
 	* checklogin to check logged in status of user
 	* returns true if logged in else false
+	*[working]
 	*/
 	public function checkLogin(){
 		if(isset($_SESSION['id']) && isset($_SESSION['uid'])){
@@ -103,6 +113,12 @@ class peopleapi {
 		}
 	}
 
+	/**
+	*@var $field pass field required from `people` condition
+	*@var $sq Query
+	*@var $sp Param
+	*[working]
+	*/
 	public function getfield($field,$sq,$sp){
 		$sql = "SELECT `$field` FROM `people` WHERE `$sq`= '$sp'";
 			// global $conn;
@@ -111,13 +127,14 @@ class peopleapi {
             	while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
             		return $row[$field];
             	}
-            }
+            } else {return false;}
 	}
 
 	/**
 	*@var username and pass 
 	*Function only checks for correct password
 	*Function must be called from a different function where the actual 
+	*[Working]
 	*/
 	public function checkLoginCred($username,$pass){
 		if(isset($username) && isset($pass)){
@@ -126,22 +143,26 @@ class peopleapi {
 			$sql = "SELECT `password` FROM `people`  WHERE `usrname`= '".$username."'";
 			// global $conn;
         	$result = mysqli_query(mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE), $sql);
-        	if($result){
-            	while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
+        	if(!$result || mysqli_num_rows($result)<1){
+            	return 'Unknown Username,Password combination.';
+			} else { 
+				while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
             		if ($row['password']==$pass){
             			return true;
-            		}else { return 'Unknown Username,Password combination.';}
+            		} else {
+            		 return 'Unknown Username,Password combination.';
+            		}
             	}
-			} else { return "Username or Password is missing";}
+			}
 		}
 	}
 
 	/**
 	*method calling checkLoginCred to log in
 	*/
-	public function login($username,$pass){
+	public function loginUsr($username,$pass){
 		$resultdata = $this->checkLoginCred($username,$pass);
-		if($resultdata = true){
+		if($resultdata === true || $resultdata==1){
 			$_SESSION['uid']=$this->getfield("uid","usrname",$username);
 			$_SESSION['id']=md5($_SESSION['uid']);
 			$this->updateSessionActivity();
@@ -154,9 +175,15 @@ class peopleapi {
       
     }
 }
-// $ojfsb= new peopleapi;
-// echo $ojfsb->checkLoginCred("tameeshb","pswd");
-
+$ojfsb= new peopleapi;
+//Testing purposes
+// echo $ojfsb->getfield("usrname","uid",$_SESSION['uid']);
+// $returnval =$ojfsb->loginUsr("tameeshb","pswd");
+// if ($returnval===true || $returnval==1){
+	// echo "truecred";
+// }else{
+	// echo"notrue ".$returnval;
+// }
 mysqli_close($conn);
 
 ?>

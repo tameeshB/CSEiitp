@@ -3,6 +3,10 @@
 ?>
 <script>
 $(document).ready(function(){
+     $('#loginblock input').keypress(function(e){
+      if(e.keyCode==13)
+      $('.loginbtn').click();
+    });
     $(".loginbtn").click(function(){
         $("#loadgif").fadeIn();
         $(".loginbtn").fadeOut();
@@ -15,34 +19,37 @@ $(document).ready(function(){
             $("#loadgif").fadeOut();
             $(".loginbtn").fadeIn();
         }else{
-        console.log("Request Send");
+        console.log("Request Sent;");
+        console.log("Request : "+ usrname+";");
         $.post("api/login",
-                            {                               
+                            {                    
                             usrname: usrname,
                             pswd: pswd
                             },
                             function(data, status){
                             console.log("Response");
                             console.log("Data: " + data + "\nStatus: " + status);
-                            if(status=='success'){//$("#myloader").fadeOut();
-                            $("#loadgif").fadeOut();
-                            $(".loginbtn").fadeIn();
-                                console.log(data);
+                                if(status=='success'){//$("#myloader").fadeOut();
+                                    $("#loadgif").fadeOut();
+                                    $(".loginbtn").fadeIn();
+                                    console.log(data);
 
-                                if(data[0]==1){
-                                    $("#loginblock").html('Welcome' + usrname);
+                                    if(data[0]==1){
+                                        $("#loginblock").html(data[1]);
                                     
-                                }else{
-                                    $("#error").html('<center>'+data[1]+'</center>');
-                                }
+                                    }else{
+                                        $("#error").html('<center>'+data[1]+'</center>');
+                                    }
      
-                            }else{  $("#loadgif").fadeOut();
+                                }else{
+                                    $("#loadgif").fadeOut();
                                     $(".loginbtn").fadeIn();
                                     $("#error").html('An error occured.<br> Please try again.');
                                     console.log("Failed "+data);
 
                                 }
-                },"json");}
+                        }
+        ,"json");}
     });
 });
 </script>
@@ -60,7 +67,7 @@ $(document).ready(function(){
                                     <a href="view/logout.php?id='.$_SESSION["id"].'">Logout</a>';
                                 } else {
                                     echo '<p><strong>IITP CSE login</strong></p>
-                                <span id="error" style="color:red"></span>
+                                <span id="error" style="color:red;padding:10px"></span>
                                 <div class="md-form">
                                     <i class="fa fa-user prefix"></i>
                                     <input type="text" id="form1" class="unameval form-control">
