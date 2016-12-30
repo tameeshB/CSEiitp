@@ -15,11 +15,22 @@ td{
 </style>
 <script>
 $(document).ready(function(){
+    function goToByScroll(id){
+     id = id.replace("link", "");
+      // Scroll
+    $('html,body').animate({
+        scrollTop: $("#"+id).offset().top},
+        'slow');
+    }
+
     function clearbtnone(){
         $("#btnonecontainer .btn").removeClass("btn-info");
         $("#btnonecontainer .btn").addClass("btn-success");
+        $("#fac").fadeOut();
+        $("#staff").fadeOut();
         $("#ugs").fadeOut();
-        //add other divs later
+        $("#pgs").fadeOut();
+        $("#phds").fadeOut();
     }
     function clearbtntwo(btnset){
         $(btnset+" .btn").removeClass("btn-info");
@@ -33,6 +44,7 @@ $(document).ready(function(){
         $(this).addClass("btn-info");
         var idname=$(this).attr("placeholder");
         $("#"+idname).fadeIn();
+        goToByScroll("hrule1"); 
     });
     $("#ugs .btn").click(function(){
         clearbtntwo("#ugs");
@@ -40,9 +52,16 @@ $(document).ready(function(){
         $(this).addClass("btn-info");
         var idname=$(this).text();
         $("#"+idname).fadeIn();
+        goToByScroll("hrule2"); 
     });
 });
 </script>
+<!-- Structure of people
+#btnonecontainer:all buttons for category of people
+For each category: there is one #div
+#fac,#staff,#ugs,#pgs,#phds
+most of the above have anchors for batch
+then there is #[batchnumber] inside which there is a table -->
                     <!--Post-->
                     <div class="post-wrapper">
                         <!--Post data-->
@@ -59,7 +78,7 @@ $(document).ready(function(){
 
                         <!--"Read more" button-->
                         <!-- <button class="btn btn-primary">Read more</button> -->
-                        <hr>
+                        <hr id="hrule1">
                        <div id="fac">
                            
                        </div>
@@ -77,6 +96,7 @@ $(document).ready(function(){
                             <a class="btn btn-success" href="#">2013</a>
                             <a class="btn btn-success" href="#">2012</a>
                             <a class="btn btn-success" href="#">2011</a>
+                            <hr width="60%" id="hrule2">
                             <div id="2016" style="display: none">
                                 <!-- 2016 table here -->
                             </div>

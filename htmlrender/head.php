@@ -1,9 +1,9 @@
 <?php 
- if(substr( $_SERVER['REQUEST_URI'], -1)=="/"){
+ if(substr( $_SERVER['REQUEST_URI'], -1)=="/" && $_SERVER['REQUEST_URI']!="/cse/"){
         $targeturi= "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $targeturi = rtrim($targeturi, '/');
         header("Location: $targeturi");
-        exit;
+         exit;
     }
 ?>
 <!DOCTYPE html>

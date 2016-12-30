@@ -6,7 +6,7 @@
         <!--Navbar-->
         <nav class="navbar navbar-dark primary-color-dark">
 			 <!--Navbar Brand-->
-                    <a class="navbar-brand mob-brand" href="#" target="_blank"><img src="https://img.collegepravesh.com/2014/10/IIT-Patna-Logo.png" style="height: 35px">&nbsp;&nbsp;CSE IIT Patna</a>
+                    <a class="navbar-brand mob-brand" href="index.php" ><img src="https://img.collegepravesh.com/2014/10/IIT-Patna-Logo.png" style="height: 35px">&nbsp;&nbsp;CSE IIT Patna</a>
             <!-- Collapse button-->
             <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx">
                 <i class="fa fa-bars"></i>
@@ -17,7 +17,7 @@
                 <!--Collapse content-->
                 <div class="collapse navbar-toggleable-xs" id="collapseEx">
                     <!--Navbar Brand-->
-                    <a class="navbar-brand desk-brand" href="#" target="_blank"><img src="https://img.collegepravesh.com/2014/10/IIT-Patna-Logo.png" style="height: 35px">&nbsp;&nbsp;CSE IIT Patna</a>
+                    <a class="navbar-brand desk-brand" href="index.php"><img src="https://img.collegepravesh.com/2014/10/IIT-Patna-Logo.png" style="height: 35px">&nbsp;&nbsp;CSE IIT Patna</a>
                     <!--Links-->
                     <span id="breakline" style="display: none"><br><br><br></span>
                     <ul class="nav navbar-nav">
