@@ -22,25 +22,25 @@
                     <span id="breakline" style="display: none"><br><br><br></span>
                     <ul class="nav navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Intro <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="index.php">Intro</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">HOD message</a>
+                            <a class="nav-link" href="hod-message">HOD's message</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">People</a>
+                            <a class="nav-link" href="people">People</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Courses</a>
+                            <a class="nav-link" href="courses">Courses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Research facilities</a>
+                            <a class="nav-link" href="research">Research</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Projects</a>
+                            <a class="nav-link" href="projects">Projects</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact Us</a>
+                            <a class="nav-link" href="contact-us">Contact Us</a>
                         </li>
                     </ul>
                     

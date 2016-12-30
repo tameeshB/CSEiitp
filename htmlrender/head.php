@@ -77,6 +77,9 @@
         	border-bottom: 1px solid rgba(183, 183, 183, 0.8);
         	width:100%;
         }
+        .nav .active{
+            background-color: #000000 !important;
+        }
     </style>
 	<script>
 		$(document).ready(function(){

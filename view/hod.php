@@ -8,12 +8,11 @@
 
 $obj->openMain();
 ?>
-
+<br><br>
                     <!--Post-->
                     <div class="post-wrapper">
                         <!--Post data-->
-                        <h1 class="h1-responsive">Hi!<br><small class="text-muted">Intro</small></h1><!-- 
-                        <h5>Written by <a href="">Name</a>, 30.04.2016</h5> -->
+                        <h1 class="h1-responsive">HOD's Message<br><small class="text-muted"></small></h1>
 
                        Hi!
 
@@ -22,36 +21,7 @@ $obj->openMain();
                     </div>
                     <!--/.Post-->
 					<hr>
-                    <!--Post-->
-                    <div class="post-wrapper">
-                        <!--Post data-->
-                        <h1 class="h1-responsive"><small class="text-muted">Events &amp; News</small></h1>
-                        <ul class="boxlist">
-                        	<li>Event1</li>
-                        	<li>Talk2</li>
-                        	<li>Presentation3</li>
-                        	<li>Holiday</li>
-                        </ul>
-
-                        <button class="btn btn-primary">More</button>
-                    </div>
-                    <hr>
-                    <div class="post-wrapper">
-                        <!--Post data-->
-                        <h1 class="h1-responsive"><small class="text-muted">Awards &amp; Recognition</small></h1>
-						<ul class="boxlist">
-                        	<li>Award to 1</li>
-                        	<li>Award to 2</li>
-                        	<li>Award to 3</li>
-                        	<li>Award to 4</li>
-                        </ul>
-
-                        <button class="btn btn-primary">More</button>
-                    </div>
-
                     
-
-                    <hr>
                     <?php 
 $obj->mainlClose();
 $obj->sbopen();
