@@ -1,5 +1,10 @@
 <?php 
-//1
+ if(substr( $_SERVER['REQUEST_URI'], -1)=="/"){
+        $targeturi= "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $targeturi = rtrim($targeturi, '/');
+        header("Location: $targeturi");
+        exit;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,6 +88,7 @@
     </style>
 	<script>
 		$(document).ready(function(){
+            
 			function navbaroptoggle(){
 				if($(".navbar-nav").css('opacity')==0){
 					$(".navbar-nav").delay(500).animate({'opacity':'1'});
