@@ -59,11 +59,11 @@ $(document).ready(function(){
                         <div class="card">
                             <div class="card-block" id="loginblock">
                                 <?php 
-                                require('api/api.php');
-                                $people=new peopleapi;
+                                require_once('api/api.php');
+                                $people=new peopleAPI;
                                 if($people->checkLogin()){
                                     $expstr= explode(" ", $people->getfield("name","uid",$_SESSION['uid'])); 
-                                    echo '<h2>Welcome, '.$expstr[0].'!</h2><br>
+                                    echo '<h2>Welcome, '.$expstr[0].'!</h2><br><a href=dashboard>Your Dashboard</a><br>
                                     <a href="view/logout.php?id='.$_SESSION["id"].'">Logout</a>';
                                 } else {
                                     echo '<p><strong>IITP CSE login</strong></p>

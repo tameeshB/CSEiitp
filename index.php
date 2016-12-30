@@ -42,6 +42,8 @@ if (preg_match($base . '$@', $url, $match)) {
 	require ('view/contact.php');
 } elseif (preg_match($base . 'api/login?$@', $url, $match)) {
 	require ('api/login.php');
+} elseif (preg_match($base . 'dashboard?$@', $url, $match)) {
+	require ('view/dashboard.php');
 } else {
 	http_response_code(404);
 	require ('404.php');

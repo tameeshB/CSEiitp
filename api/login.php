@@ -2,14 +2,13 @@
 header('Content-type:application/json');
 $arr=array();
 if(session_status() == PHP_SESSION_NONE){session_start();}
-require('/var/www/html/cse/api/api.php');
-$people=new peopleapi;
+require_once('/var/www/html/cse/api/api.php');
+$people=new peopleAPI;
 $resultdata= $people->checkLogin();
 if($resultdata=== true || $resultdata==1){//already logged in
 	$expstr= explode(" ", $people->getfield("name","uid",$_SESSION['uid']));
 	$arr[]=1;
-	$arr[]= '<h2>Welcome, '.$expstr[0].'!</h2><br>
-                                    <a href="view/logout.php?id='.$_SESSION["id"].'">Logout</a>';
+	$arr[]= '<h2>Welcome, '.$expstr[0].'!</h2><br><a href=dashboard>Your Dashboard</a><br><a href="view/logout.php?id='.$_SESSION["id"].'">Logout</a>';
     echo json_encode($arr);
 } else {//not logged in
 		//login queries
@@ -19,7 +18,7 @@ if($resultdata=== true || $resultdata==1){//already logged in
 		if($phpresult===true || $phpresult==1){
 			$arr[]=1;
 			$expstr= explode(" ", $people->getfield("name","uid",$_SESSION['uid']));
-			$arr[]= '<h2>Welcome, '.$expstr[0].'!</h2><br><a href=view/logout.php?id='.$_SESSION["id"].'>Logout</a>'; 
+			$arr[]= '<h2>Welcome, '.$expstr[0].'!</h2><br><a href=dashboard>Your Dashboard</a><br><a href=view/logout.php?id='.$_SESSION["id"].'>Logout</a>'; 
             echo json_encode($arr);
 		} else {
 			$arr[]=-1;

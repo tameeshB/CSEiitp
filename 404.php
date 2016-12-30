@@ -1,5 +1,5 @@
 <?php
- include 'htmlrender/htmlrender.php';
+ require_once('htmlrender/htmlrender.php');
     $obj = new HTMLrender;
     $obj->openHTML();
     $obj->header();

@@ -29,7 +29,7 @@ $conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 * @var $_SESSION id=md5 stored;
 */
 
-class peopleapi {
+class peopleAPI {
 	// public $conn = null;
 	function __construct() {
 		
@@ -175,7 +175,7 @@ class peopleapi {
       
     }
 }
-$ojfsb= new peopleapi;
+// $ojfsb= new peopleAPI;
 //Testing purposes
 // echo $ojfsb->getfield("usrname","uid",$_SESSION['uid']);
 // $returnval =$ojfsb->loginUsr("tameeshb","pswd");
