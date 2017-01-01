@@ -222,7 +222,12 @@ class peopleAPI {
 
         mysqli_close($link);
 	}
-
+	/**
+	*Method returning all deltas since last delta for AJAX feed
+	*@var $deltaLast:get all deltas after this delta
+	*@var $deltaType :gets deltas of specific kind.
+	*		default=null :all deltas
+	*/
 	public function deltaGet($deltaLast,$deltaType=null){
 		$sql = "SELECT `deltaTitle`,`url`,`deltaType`,`deltaIndex` FROM `deltas`  WHERE `deltaIndex`> $deltaLast ORDER BY `deltaIndex` DESC";
 		
@@ -250,6 +255,8 @@ class peopleAPI {
     			return false;
         	}
 	}
+
+
 
 	/**
 	*Just for test purposes
