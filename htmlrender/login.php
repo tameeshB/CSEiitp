@@ -35,7 +35,9 @@ $(document).ready(function(){
                                     console.log(data);
 
                                     if(data[0]==1){
-                                        $("#loginblock").html(data[1]);
+                                        $("#loginblock").fadeOut(400);
+                                        $("#loginblock").delay(700).html(data[1]);
+                                        $("#loginblock").fadeIn("fast");
                                     
                                     }else{
                                         $("#error").html('<center>'+data[1]+'</center>');
@@ -58,6 +60,7 @@ $(document).ready(function(){
                         <br> -->
                         <div class="card">
                             <div class="card-block" id="loginblock">
+
                                 <?php 
                                 require_once('api/api.php');
                                 $people=new peopleAPI;
@@ -78,11 +81,12 @@ $(document).ready(function(){
                                     <input type="password" id="form2" class="pswdval form-control">
                                     <label for="form2">*****</label>
                                 </div>
-                                <img id="loadgif" src="img/lightbox/preloader.gif" style="display:none">
+                                
                                 <button class="btn btn-primary loginbtn">Submit</button>';
                                 }
                                 
                                 ?>
                             </div>
+                            <img id="loadgif" src="img/lightbox/preloader.gif" style="display:none">
                         </div>
                     </div>

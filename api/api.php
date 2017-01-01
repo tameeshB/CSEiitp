@@ -36,9 +36,11 @@ class peopleAPI {
 	}
 
 	/**
+	*
 	*Filter string for SQL Injection attack possibility
-	*/
-	public function SQLInjFilter(&$unfilteredString){
+	*@todo More Work needed
+	*/ 
+	 public function SQLInjFilter(&$unfilteredString){
 		// $unfilteredString;
 		$unfilteredString = mb_convert_encoding($unfilteredString, 'UTF-8', 'UTF-8');
 		$unfilteredString = htmlentities($unfilteredString, ENT_QUOTES, 'UTF-8');
@@ -101,15 +103,15 @@ class peopleAPI {
                 	} else { 
                 		$_SESSION['uid']=null;
                 		$_SESSION['id']=null;
-                		return false;
+                		return 0;
                 	}
             	}
         	} else {
-        		return false;
+        		return 0;
                 logmydata ("Error in Query Execution");
         	}
 		} else {
-			return false;
+			return 0;
 		}
 	}
 
@@ -159,6 +161,7 @@ class peopleAPI {
 
 	/**
 	*method calling checkLoginCred to log in
+	*[working]
 	*/
 	public function loginUsr($username,$pass){
 		$resultdata = $this->checkLoginCred($username,$pass);
@@ -171,14 +174,74 @@ class peopleAPI {
 
 	}
 
+	/**
+	*Function newUser()
+	*/
+	public function newUser($usrname,$name,$pswd,$type){
+		$this->SQLInjFilter($usrname);
+		$this->SQLInjFilter($name);
+		$this->SQLInjFilter($pswd);
+		$this->SQLInjFilter($type);
+		//validations
+		//usrname must be same as webmailusername
+		$sql = "INSERT INTO `people`(usrname,name,password,type) VALUES ('".$usrname."', '".$name."', '".$pswd."', '".$type."')";
+		$link =mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($link,$sql);
+        if($result){
+        	return 1;
+
+        }else{ return mysqli_errno($link) . ": " . mysqli_error($link);}
+        mysqli_close($link);
+	}
+
+	/**
+	*Function to store deltas with delta indexes into DB , table: deltas
+	*Later to add more delta types as application expands with other functions
+	*@todo Add compatibility for other types of possibility
+	*@var $deltaTitle Title of delta
+	*@var $deltaType: Integer value for Delta type
+	*		0:Event
+	*		1:Awards & Recognition
+	*@var $deltaPointer Resource locator address to redirect to
+	*/
+	protected function deltaStore($deltaTitle,$deltaType,$deltaPointer=null){
+		//No SQLInjFilter as this function is to be called by other internal functions being triggered by admin 
+		if(!isset($deltaPointer)){$deltaPointer=null;}//replace?
+
+		$sql = "INSERT INTO `deltas`(deltaTitle,url,deltaType) VALUES ('$deltaTitle', '$deltaPointer', '$deltaType')";
+		$link =mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		
+		$result = mysqli_query($link,$sql);
+        
+        if($result){
+        	return 1;
+        }else{ return mysqli_errno($link) . ": " . mysqli_error($link);}
+
+        mysqli_close($link);
+	}
+
+	public function deltaGet($deltaLast,$deltaType=null){
+		
+	}
+
+	/**
+	*Just for test purposes
+	//*/
+	public function dummy(){
+		return $this->deltaStore("Visit Google.com",0,"http://google.com");
+	}*/
+
 	function __destruct() {
       
     }
 }
-// $ojfsb= new peopleAPI;
 //Testing purposes
-// echo $ojfsb->getfield("usrname","uid",$_SESSION['uid']);
+ // $ojfsb= new peopleAPI;
+ // echo $ojfsb->dummy();
 // $returnval =$ojfsb->loginUsr("tameeshb","pswd");
+// $myvar='1 or 1=1';
+// echo $ojfsb-> SQLInjFilter($myvar);
+// echo $myvar;
 // if ($returnval===true || $returnval==1){
 	// echo "truecred";
 // }else{
