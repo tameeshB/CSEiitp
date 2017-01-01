@@ -215,30 +215,54 @@ class peopleAPI {
         
         if($result){
         	return 1;
-        }else{ return mysqli_errno($link) . ": " . mysqli_error($link);}
+        }else{
+    		logmydata ("DB error storing data using deltaStore ".mysqli_errno($link) . ": " . mysqli_error($link). PHP_EOL);
+         	return false;
+     	}
 
         mysqli_close($link);
 	}
 
 	public function deltaGet($deltaLast,$deltaType=null){
+		$sql = "SELECT `deltaTitle`,`url`,`deltaType`,`deltaIndex` FROM `deltas`  WHERE `deltaIndex`> $deltaLast ORDER BY `deltaIndex` DESC";
 		
+		if($deltaType){
+
+			$sql = "SELECT `deltaTitle`,`url`,`deltaType`,`deltaIndex` FROM `deltas`  WHERE (`deltaIndex`> $deltaLast AND `deltaType` = $deltaType ) ORDER BY `deltaIndex` DESC";
+		
+		}
+			// global $conn;
+        	$result = mysqli_query(mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE), $sql);
+        	if($result ){
+        		$deltas=array();
+        		while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
+        				$deltas[]['deltaIndex']=$row['deltaIndex'];
+        				$deltas[]['deltaTitle']=$row['deltaTitle'];
+        				$deltas[]['deltaType']=$row['deltaType'];
+        				$deltas[]['url']=$row['url'];
+        				return $deltas;
+        		}
+        	} else {
+    			logmydata ("DB error fetching data from deltaGet ".mysqli_errno($link) . ": " . mysqli_error($link). PHP_EOL);
+    			return false;
+        	}
 	}
 
 	/**
 	*Just for test purposes
-	//*/
+	*/
 	public function dummy(){
 		return $this->deltaStore("Visit Google.com",0,"http://google.com");
-	}*/
+	}
 
 	function __destruct() {
       
     }
 }
 //Testing purposes
- // $ojfsb= new peopleAPI;
+ $ojfsb= new peopleAPI;
  // echo $ojfsb->dummy();
-// $returnval =$ojfsb->loginUsr("tameeshb","pswd");
+echo print_r($ojfsb->deltaGet(0));
 // $myvar='1 or 1=1';
 // echo $ojfsb-> SQLInjFilter($myvar);
 // echo $myvar;
