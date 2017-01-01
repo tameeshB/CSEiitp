@@ -266,7 +266,7 @@ class peopleAPI {
 		$this->SQLInjFilter($deltaLast);
 		$this->SQLInjFilter($deltaType);
 		header('Content-type: application/json');
-		$jsonEncodedDeltas = json_encode($this->deltaGet($deltaLast,$deltaType))
+		$jsonEncodedDeltas = json_encode($this->deltaGet($deltaLast,$deltaType));
 		echo $jsonEncodedDeltas;
 	}
 
