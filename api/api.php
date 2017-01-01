@@ -223,7 +223,7 @@ class peopleAPI {
         mysqli_close($link);
 	}
 	/**
-	*Method returning all deltas since last delta for AJAX feed
+	*Method returning all deltas since last delta for echoDeltaAJAX and otherwise
 	*@var $deltaLast:get all deltas after this delta
 	*@var $deltaType :gets deltas of specific kind.
 	*		default=null :all deltas
@@ -256,7 +256,19 @@ class peopleAPI {
         	}
 	}
 
-
+	/**
+	*Method echoing for AJAX all deltas since last delta 
+	*@var $deltaLast:get all deltas after this delta
+	*@var $deltaType :gets deltas of specific kind.
+	*		default=null :all deltas
+	*/
+	public function echoDeltaAJAX($deltaLast,$deltaType=null){
+		$this->SQLInjFilter($deltaLast);
+		$this->SQLInjFilter($deltaType);
+		header('Content-type: application/json');
+		$jsonEncodedDeltas = json_encode($this->deltaGet($deltaLast,$deltaType))
+		echo $jsonEncodedDeltas;
+	}
 
 	/**
 	*Just for test purposes
