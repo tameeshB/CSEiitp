@@ -235,13 +235,16 @@ class peopleAPI {
         	$result = mysqli_query(mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE), $sql);
         	if($result ){
         		$deltas=array();
+        		$i=0;
         		while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
-        				$deltas[]['deltaIndex']=$row['deltaIndex'];
-        				$deltas[]['deltaTitle']=$row['deltaTitle'];
-        				$deltas[]['deltaType']=$row['deltaType'];
-        				$deltas[]['url']=$row['url'];
-        				return $deltas;
+        				$deltas[$i]['deltaIndex']=$row['deltaIndex'];
+        				$deltas[$i]['deltaTitle']=$row['deltaTitle'];
+        				$deltas[$i]['deltaType']=$row['deltaType'];
+        				$deltas[$i++]['url']=$row['url'];
+        				
         		}
+
+        		return $deltas;	
         	} else {
     			logmydata ("DB error fetching data from deltaGet ".mysqli_errno($link) . ": " . mysqli_error($link). PHP_EOL);
     			return false;
@@ -262,7 +265,7 @@ class peopleAPI {
 //Testing purposes
  $ojfsb= new peopleAPI;
  // echo $ojfsb->dummy();
-echo print_r($ojfsb->deltaGet(0));
+// echo json_encode($ojfsb->deltaGet(0)) ;
 // $myvar='1 or 1=1';
 // echo $ojfsb-> SQLInjFilter($myvar);
 // echo $myvar;
