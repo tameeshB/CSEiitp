@@ -1,4 +1,6 @@
 # CSEiitp
+CSE IITP webapp
+http://www.iitp.ac.in/index.php/departments/engineering/computer-science-a-engineering.html
 #Troubleshooting
 1]"/someurl/ doesnt exist" on clicking the navbar links
 >Allow .htaccess override in apache onfig file "AllowOverride All"
